@@ -36,16 +36,26 @@ export default function App() {
     endAddGoalHandler();
   }
 
-  function deleteGoalHandler(id, text) {
-    setFinished((currentFinished) => [
-      ...currentFinished,
-      { text: text, id: id },
-    ]);
-    console.log(finishedGoals);
+  function deleteGoalHandler(id) {
     setMyGoals((currentGoals) => {
+      const deletedGoal = currentGoals.find((goal) => goal.id === id);
+      if (deletedGoal) {
+        setFinished((currentFinished) => [...currentFinished, deletedGoal]);
+      }
       return currentGoals.filter((goal) => goal.id !== id);
     });
   }
+
+  // function deleteGoalHandler(id, text) {
+  //   setFinished((currentFinished) => [
+  //     ...currentFinished,
+  //     { text: text, id: id },
+  //   ]);
+  //   console.log(finishedGoals);
+  //   setMyGoals((currentGoals) => {
+  //     return currentGoals.filter((goal) => goal.id !== id);
+  //   });
+  // }
 
   return (
     <>
